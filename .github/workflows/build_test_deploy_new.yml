@@ -24,8 +24,28 @@ jobs:
     steps:
       - run: node -v
 
+      - run: rustc --version
+
       - run: docker --version
 
-      - run: sudo apt update
-
       - run: pwd
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 25
+
+      - run: fnm use 18
+
+      - run: rustup toolchain install "${RUST_TOOLCHAIN}"
+
+      - run: rustup default "${RUST_TOOLCHAIN}"
+
+      - run: npm i -g "pnpm@${PNPM_VERSION}" "turbo@${TURBO_VERSION}" "@napi-rs/cli@${NAPI_CLI_VERSION}"
+
+      - run: rustup
+
+      - run: pnpm install
+
+      - run: pnpm build
+
+      - run: turbo build-native -- --target x86_64-unknown-linux-gnu
