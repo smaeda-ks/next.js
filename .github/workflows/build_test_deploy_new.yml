@@ -49,3 +49,11 @@ jobs:
       - run: pnpm build
 
       - run: turbo build-native -- --target x86_64-unknown-linux-gnu
+
+      - run: pnpm playwright install-deps
+
+      - run: pnpm playwright install chromium
+
+      - run: git clean -xdf test; git checkout test;
+
+      - run: node run-tests.js test/integration/production/test/index.test.js
