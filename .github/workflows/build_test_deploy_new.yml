@@ -42,7 +42,7 @@ jobs:
 
       - run: npm i -g "pnpm@${PNPM_VERSION}" "turbo@${TURBO_VERSION}" "@napi-rs/cli@${NAPI_CLI_VERSION}"
 
-      - run: rustup
+      - run: pnpm store path
 
       - run: pnpm install
 
