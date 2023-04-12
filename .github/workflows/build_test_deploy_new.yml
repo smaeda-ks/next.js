@@ -11,7 +11,7 @@ env:
   PNPM_VERSION: 7.24.3
   NODE_MAINTENANCE_VERSION: 16
   NODE_LTS_VERSION: 18
-  TEST_CONCURRENCY: 8
+  TEST_CONCURRENCY: 10
   # TODO: remove after testing
   NEXT_TEST_CONTINUE_ON_ERROR: 'true'
 
@@ -64,7 +64,7 @@ jobs:
       - run: rm -rf /tmp/next-repo-*; rm -rf /tmp/next-install-*
 
       - run: node run-tests.js --type unit -c ${TEST_CONCURRENCY}
-        name: Run development/ tests
+        name: Run unit tests
 
       - run: node run-tests.js --type development -c ${TEST_CONCURRENCY}
         name: Run development/ tests
