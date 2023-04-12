@@ -63,6 +63,8 @@ jobs:
 
       - run: node run-tests.js --type development -c ${TEST_CONCURRENCY}
         name: Run development/ tests
+        env:
+          NEXT_TEST_CONTINUE_ON_ERROR: 'true'
 
       - run: node run-tests.js --type production -c ${TEST_CONCURRENCY}
         name: Run production/ tests
