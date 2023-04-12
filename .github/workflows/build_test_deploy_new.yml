@@ -56,4 +56,18 @@ jobs:
 
       - run: git clean -xdf test; git checkout test;
 
-      - run: node run-tests.js test/integration/production/test/index.test.js
+      - run: node run-tests.js --type development -c 5
+        name: Run development/ tests
+
+      - run: node run-tests.js --type production -c 5
+        name: Run production/ tests
+
+      - run: node run-tests.js --type e2e -c 5
+        name: Run e2e dev tests
+        env:
+          NEXT_TEST_MODE: 'dev'
+
+      - run: node run-tests.js --type e2e -c 5
+        name: Run e2e start tests
+        env:
+          NEXT_TEST_MODE: 'start'
