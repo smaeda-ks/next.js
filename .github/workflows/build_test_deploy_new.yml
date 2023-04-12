@@ -1,0 +1,31 @@
+on:
+  push:
+    branches: ['ijjk/update-ci-workflow']
+
+name: Build, test, and deploy
+
+env:
+  NAPI_CLI_VERSION: 2.14.7
+  TURBO_VERSION: 1.6.3
+  RUST_TOOLCHAIN: nightly-2023-03-09
+  PNPM_VERSION: 7.24.3
+  NODE_MAINTENANCE_VERSION: 16
+  NODE_LTS_VERSION: 18
+
+jobs:
+  build:
+    runs-on: self-linux-x64-16gb
+
+    env:
+      TURBO_TEAM: 'vercel'
+      TURBO_REMOTE_ONLY: 'true'
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+
+    steps:
+      - run: node -v
+
+      - run: docker --version
+
+      - run: sudo apt update
+
+      - run: pwd
