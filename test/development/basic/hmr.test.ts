@@ -826,7 +826,7 @@ describe.each([[''], ['/docs']])(
             redboxSource.indexOf('`----')
           )
 
-          expect(redboxSource).toMatchSnapshot()
+          expect(next.normalizeTestDirContent(redboxSource)).toMatchSnapshot()
 
           await next.patchFile(aboutPage, aboutContent)
 
