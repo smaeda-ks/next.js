@@ -109,7 +109,9 @@ for (const variant of ['default', 'turbo']) {
         ])
       )
       expect(await session.hasRedbox(true)).toBe(true)
-      expect(await session.getRedboxSource()).toMatchSnapshot()
+      expect(
+        next.normalizeTestDirContent(await session.getRedboxSource())
+      ).toMatchSnapshot()
 
       await session.patch(
         'pages/_app.js',
@@ -158,7 +160,9 @@ for (const variant of ['default', 'turbo']) {
         ])
       )
       expect(await session.hasRedbox(true)).toBe(true)
-      expect(await session.getRedboxSource()).toMatchSnapshot()
+      expect(
+        next.normalizeTestDirContent(await session.getRedboxSource())
+      ).toMatchSnapshot()
 
       await session.patch(
         'pages/_document.js',

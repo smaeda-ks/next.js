@@ -16,7 +16,7 @@ exports[`ReactRefreshLogBox default syntax > runtime error 2`] = `
 "./index.js
 Error: 
   x Expected '}', got '<eof>'
-   ,-[5:1]
+   ,-[TEST_DIR/index.js:5:1]
  5 |           i++
  6 |           throw Error('no ' + i)
  7 |         }, 1000)
@@ -35,7 +35,7 @@ exports[`ReactRefreshLogBox default syntax > runtime error 3`] = `
 "./index.js
 Error: 
   x Expected '}', got '<eof>'
-   ,-[5:1]
+   ,-[TEST_DIR/index.js:5:1]
  5 |           i++
  6 |           throw Error('no ' + i)
  7 |         }, 1000)

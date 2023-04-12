@@ -403,9 +403,14 @@ async function main() {
     testNames.map(async (test) => {
       const dirName = path.dirname(test)
       let dirSema = directorySemas.get(dirName)
-      if (dirSema === undefined)
+
+      // we only restrict 1 test per directory for
+      // legacy integration tests
+      if (!testType && dirSema === undefined) {
         directorySemas.set(dirName, (dirSema = new Sema(1)))
-      await dirSema.acquire()
+      }
+      if (dirSema) await dirSema.acquire()
+
       await sema.acquire()
       let passed = false
 
@@ -482,7 +487,7 @@ async function main() {
       }
 
       sema.release()
-      dirSema.release()
+      if (dirSema) dirSema.release()
     })
   )
 

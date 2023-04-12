@@ -75,7 +75,7 @@ exports[`ReactRefreshLogBox default unterminated JSX 1`] = `
 "./index.js
 Error: 
   x Unexpected token. Did you mean \`{'}'}\` or \`&rbrace;\`?
-   ,-[5:1]
+   ,-[TEST_DIR/index.js:5:1]
  5 |               <p>lol</p>
  6 |             div
  7 |           )
@@ -85,7 +85,7 @@ Error:
    \`----
 
   x Unexpected eof
-   ,-[6:1]
+   ,-[TEST_DIR/index.js:6:1]
  6 |             div
  7 |           )
  8 |         }

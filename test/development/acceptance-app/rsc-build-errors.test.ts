@@ -272,13 +272,14 @@ createNextDescribe(
 
       expect(await session.hasRedbox(true)).toBe(true)
       await check(() => session.getRedboxSource(), /must be a Client Component/)
-      expect(await session.getRedboxSource()).toMatchInlineSnapshot(`
+      expect(next.normalizeTestDirContent(await session.getRedboxSource()))
+        .toMatchInlineSnapshot(`
         "./app/server-with-errors/error-file/error.js
         ReactServerComponentsError:
 
         ./app/server-with-errors/error-file/error.js must be a Client Component. Add the \\"use client\\" directive the top of the file to resolve this issue.
 
-           ,----
+           ,-[TEST_DIR/app/server-with-errors/error-file/error.js:1:1]
          1 | export default function Error() {}
            : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
            \`----
@@ -302,13 +303,14 @@ createNextDescribe(
 
       expect(await session.hasRedbox(true)).toBe(true)
       await check(() => session.getRedboxSource(), /must be a Client Component/)
-      expect(await session.getRedboxSource()).toMatchInlineSnapshot(`
+      expect(next.normalizeTestDirContent(await session.getRedboxSource()))
+        .toMatchInlineSnapshot(`
         "./app/server-with-errors/error-file/error.js
         ReactServerComponentsError:
 
         ./app/server-with-errors/error-file/error.js must be a Client Component. Add the \\"use client\\" directive the top of the file to resolve this issue.
 
-           ,----
+           ,-[TEST_DIR/app/server-with-errors/error-file/error.js:1:1]
          1 |  
            : ^
            \`----
@@ -386,13 +388,14 @@ createNextDescribe(
       )
 
       expect(await session.hasRedbox(true)).toBe(true)
-      expect(await session.getRedboxSource()).toMatchInlineSnapshot(`
+      expect(next.normalizeTestDirContent(await session.getRedboxSource()))
+        .toMatchInlineSnapshot(`
         "./app/Component.js
         ReactServerComponentsError:
 
         You're importing a component that needs useState. It only works in a Client Component but none of its parents are marked with \\"use client\\", so they're Server Components by default.
 
-           ,----
+           ,-[TEST_DIR/node_modules/client-package/module2.js:1:1]
          1 | import { useState } from 'react'
            :          ^^^^^^^^
            \`----

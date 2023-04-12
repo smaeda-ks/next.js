@@ -11,6 +11,7 @@ import webdriver from '../next-webdriver'
 import { renderViaHTTP, fetchViaHTTP } from 'next-test-utils'
 import cheerio from 'cheerio'
 import { BrowserInterface } from '../browsers/base'
+import escapeStringRegexp from 'escape-string-regexp'
 
 type Event = 'stdout' | 'stderr' | 'error' | 'destroy'
 export type InstallCommand =
@@ -280,6 +281,15 @@ export class NextInstance {
           )
         }
       })
+  }
+
+  // normalize snapshots or stack traces being tested
+  // to a consistent test dir value since it's random
+  public normalizeTestDirContent(content) {
+    return content.replace(
+      new RegExp(escapeStringRegexp(this.testDir), 'g'),
+      'TEST_DIR'
+    )
   }
 
   public async clean() {

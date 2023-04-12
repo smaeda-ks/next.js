@@ -4,7 +4,7 @@ exports[`ReactRefreshLogBox default _app syntax error shows logbox 1`] = `
 "./pages/_app.js
 Error: 
   x Expression expected
-   ,-[1:1]
+   ,-[TEST_DIR/pages/_app.js:1:1]
  1 | 
  2 |             function MyApp({ Component, pageProps }) {
  3 |               return <<Component {...pageProps} />;
@@ -15,7 +15,7 @@ Error:
    \`----
 
   x Expression expected
-   ,-[1:1]
+   ,-[TEST_DIR/pages/_app.js:1:1]
  1 | 
  2 |             function MyApp({ Component, pageProps }) {
  3 |               return <<Component {...pageProps} />;
@@ -33,7 +33,7 @@ exports[`ReactRefreshLogBox default _document syntax error shows logbox 1`] = `
 "./pages/_document.js
 Error: 
   x Unexpected token \`{\`. Expected identifier, string literal, numeric literal or [ for the computed key
-   ,-[1:1]
+   ,-[TEST_DIR/pages/_document.js:1:1]
  1 | 
  2 |             import Document, { Html, Head, Main, NextScript } from 'next/document'
  3 | 

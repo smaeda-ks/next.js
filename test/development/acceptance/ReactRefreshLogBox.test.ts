@@ -215,7 +215,7 @@ for (const variant of ['default', 'turbo']) {
       expect(await session.hasRedbox(true)).toBe(true)
 
       const source = await session.getRedboxSource()
-      expect(source).toMatchSnapshot()
+      expect(next.normalizeTestDirContent(source)).toMatchSnapshot()
 
       await cleanup()
     })

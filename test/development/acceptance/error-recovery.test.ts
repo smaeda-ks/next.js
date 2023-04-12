@@ -426,12 +426,16 @@ for (const variant of ['default', 'turbo']) {
 
       await new Promise((resolve) => setTimeout(resolve, 1000))
       expect(await session.hasRedbox(true)).toBe(true)
-      expect(await session.getRedboxSource()).toMatchSnapshot()
+      expect(
+        next.normalizeTestDirContent(await session.getRedboxSource())
+      ).toMatchSnapshot()
 
       // Test that runtime error does not take over:
       await new Promise((resolve) => setTimeout(resolve, 2000))
       expect(await session.hasRedbox(true)).toBe(true)
-      expect(await session.getRedboxSource()).toMatchSnapshot()
+      expect(
+        next.normalizeTestDirContent(await session.getRedboxSource())
+      ).toMatchSnapshot()
 
       await cleanup()
     })
