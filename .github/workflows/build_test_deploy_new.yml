@@ -30,8 +30,6 @@ jobs:
 
       - run: rustc --version
 
-      - run: docker --version
-
       - run: pwd
 
       - uses: actions/checkout@v3
