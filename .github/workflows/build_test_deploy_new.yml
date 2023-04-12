@@ -81,3 +81,6 @@ jobs:
         name: Run e2e start tests
         env:
           NEXT_TEST_MODE: 'start'
+
+      - run: node run-tests.js -c ${TEST_CONCURRENCY}
+        name: Run integration/ tests
