@@ -17,7 +17,7 @@ env:
 
 jobs:
   build:
-    runs-on: self-linux-x64-16gb
+    runs-on: self-hosted-arm64-linux
 
     env:
       TURBO_TEAM: 'vercel'
@@ -53,7 +53,7 @@ jobs:
 
       - run: pnpm build
 
-      - run: turbo run build-native -- --release --target x86_64-unknown-linux-gnu
+      - run: turbo run build-native -- --release --target aarch64-unknown-linux-gnu
 
       - run: pnpm playwright install-deps
 
