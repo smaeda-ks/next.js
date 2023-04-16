@@ -1,0 +1,70 @@
+name: Build Reusable
+
+on:
+  workflow_call:
+    inputs:
+      afterBuild:
+        required: false
+        description: 'additional steps to run'
+        type: string
+
+env:
+  NAPI_CLI_VERSION: 2.14.7
+  TURBO_VERSION: 1.6.3
+  RUST_TOOLCHAIN: nightly-2023-03-09
+  PNPM_VERSION: 7.24.3
+  NODE_MAINTENANCE_VERSION: 16
+  NODE_LTS_VERSION: 18
+  TEST_CONCURRENCY: 10
+  # TODO: remove after testing
+  NEXT_TEST_CONTINUE_ON_ERROR: 'true'
+
+  TURBO_TEAM: 'vercel'
+  TURBO_REMOTE_ONLY: 'true'
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  NEXT_TELEMETRY_DISABLED: 1
+  # we build a dev binary for use in CI so skip downloading
+  # canary next-swc binaries in the monorepo
+  NEXT_SKIP_NATIVE_POSTINSTALL: 1
+
+jobs:
+  build:
+    runs-on: self-hosted-arm64-linux
+
+    steps:
+      - run: fnm install 18
+      - run: eval $(fnm env) && fnm use 18
+
+      - run: node -v
+
+      - run: rustc --version
+
+      - run: pwd
+
+      - run: rustup toolchain install "${RUST_TOOLCHAIN}"
+
+      - run: rustup default "${RUST_TOOLCHAIN}"
+
+      - run: npm i -g "pnpm@${PNPM_VERSION}" "turbo@${TURBO_VERSION}" "@napi-rs/cli@${NAPI_CLI_VERSION}"
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 25
+
+      - run: pnpm store path
+
+      - run: pnpm install
+
+      - run: pnpm build
+
+      - run: turbo run build-native -- --release --target aarch64-unknown-linux-gnu
+
+      - run: pnpm playwright install-deps
+
+      - run: pnpm playwright install chromium
+
+      - run: git clean -xdf test; git checkout test;
+
+      - run: rm -rf /tmp/next-repo-*; rm -rf /tmp/next-install-*
+
+      - run: /bin/bash -c "${{ inputs.afterBuild }}"

@@ -1,5 +1,7 @@
 # `@next/swc`
 
+bump
+
 This package is responsible for swc compilation customized for next.js
 
 ### Development

@@ -1,0 +1,26 @@
+name: build_initial
+
+on:
+  push:
+    branches: ['ijjk/update-ci-workflow']
+
+concurrency:
+  group: ${{ github.ref }}-build-initial
+  cancel-in-progress: true
+
+env:
+  NAPI_CLI_VERSION: 2.14.7
+  TURBO_VERSION: 1.6.3
+  RUST_TOOLCHAIN: nightly-2023-03-09
+  PNPM_VERSION: 7.24.3
+  NODE_MAINTENANCE_VERSION: 16
+  NODE_LTS_VERSION: 18
+  TEST_CONCURRENCY: 10
+  # TODO: remove after testing
+  NEXT_TEST_CONTINUE_ON_ERROR: 'true'
+
+jobs:
+  build_initial:
+    name: build_initial
+    uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
+    secrets: inherit
