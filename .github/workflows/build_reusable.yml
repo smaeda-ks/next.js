@@ -15,7 +15,7 @@ env:
   PNPM_VERSION: 7.24.3
   NODE_MAINTENANCE_VERSION: 16
   NODE_LTS_VERSION: 18
-  TEST_CONCURRENCY: 10
+  TEST_CONCURRENCY: 8
   # TODO: remove after testing
   NEXT_TEST_CONTINUE_ON_ERROR: 'true'
 
@@ -26,6 +26,7 @@ env:
   # we build a dev binary for use in CI so skip downloading
   # canary next-swc binaries in the monorepo
   NEXT_SKIP_NATIVE_POSTINSTALL: 1
+  TEST_TIMINGS_TOKEN: ${{ secrets.TEST_TIMINGS_TOKEN }}
 
 jobs:
   build:
@@ -62,6 +63,8 @@ jobs:
       - run: pnpm playwright install-deps
 
       - run: pnpm playwright install chromium
+
+      - run: node run-tests.js --timings --write-timings -g 1/1
 
       - run: git clean -xdf test; git checkout test;
 

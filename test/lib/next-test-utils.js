@@ -103,9 +103,8 @@ export function getFullUrl(appPortOrUrl, url, hostname) {
     parsedUrl.search = parsedPathQuery.search
     parsedUrl.pathname = parsedPathQuery.pathname
 
-    if (parsedUrl.hostname === 'localhost') {
-      parsedUrl.hostname =
-        hostname && hostname !== 'localhost' ? hostname : '127.0.0.1'
+    if (hostname && parsedUrl.hostname === 'localhost') {
+      parsedUrl.hostname = hostname
     }
     fullUrl = parsedUrl.toString()
   }
@@ -159,18 +158,25 @@ export function renderViaHTTP(appPort, pathname, query, opts) {
  */
 export function fetchViaHTTP(appPort, pathname, query, opts) {
   const url = query ? withQuery(pathname, query) : pathname
-  return fetch(getFullUrl(appPort, url), {
+  const fullUrl = getFullUrl(appPort, url)
+  return fetch(fullUrl.replace(/localhost/g, '127.0.0.1'), {
+    ...opts,
+    headers: {
+      host: new URL(fullUrl).host,
+      ...(opts?.headers || {}),
+    },
     // in node.js v17 fetch favors IPv6 but Next.js is
     // listening on IPv4 by default so force IPv4 DNS resolving
-    agent: (parsedUrl) => {
-      if (parsedUrl.protocol === 'https:') {
-        return new https.Agent({ family: 4 })
-      }
-      if (parsedUrl.protocol === 'http:') {
-        return new http.Agent({ family: 4 })
-      }
-    },
-    ...opts,
+    agent:
+      opts?.agent ||
+      ((parsedUrl) => {
+        if (parsedUrl.protocol === 'https:') {
+          return new https.Agent({ family: 4 })
+        }
+        if (parsedUrl.protocol === 'http:') {
+          return new http.Agent({ family: 4 })
+        }
+      }),
   })
 }
 

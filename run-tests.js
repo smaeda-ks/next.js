@@ -107,7 +107,8 @@ async function main() {
   const writeTimings = process.argv.includes('--write-timings')
   const groupIdx = process.argv.indexOf('-g')
   const groupArg = groupIdx !== -1 && process.argv[groupIdx + 1]
-
+  const testPatternIdx = process.argv.indexOf('--test-pattern')
+  const testPattern = testPatternIdx !== -1 && process.argv[testPatternIdx + 1]
   const testTypeIdx = process.argv.indexOf('--type')
   const testType = testTypeIdx > -1 ? process.argv[testTypeIdx + 1] : undefined
   let filterTestsBy
@@ -153,6 +154,9 @@ async function main() {
         cwd: path.join(__dirname, 'test'),
       })
     ).filter((test) => {
+      if (testPattern) {
+        return new RegExp(testPattern).test(test)
+      }
       if (filterTestsBy) {
         // only include the specified type
         return filterTestsBy === 'none' ? true : test.startsWith(filterTestsBy)
@@ -161,30 +165,32 @@ async function main() {
         return !configuredTestTypes.some((type) => test.startsWith(type))
       }
     })
+  }
 
-    if (outputTimings && groupArg) {
-      console.log('Fetching previous timings data')
+  if (outputTimings && groupArg) {
+    console.log('Fetching previous timings data')
+    try {
+      const timingsFile = path.join(__dirname, 'test-timings.json')
       try {
-        const timingsFile = path.join(__dirname, 'test-timings.json')
-        try {
-          prevTimings = JSON.parse(await fs.readFile(timingsFile, 'utf8'))
-          console.log('Loaded test timings from disk successfully')
-        } catch (_) {}
-
-        if (!prevTimings) {
-          prevTimings = await getTestTimings()
-          console.log('Fetched previous timings data successfully')
-
-          if (writeTimings) {
-            await fs.writeFile(timingsFile, JSON.stringify(prevTimings))
-            console.log('Wrote previous timings data to', timingsFile)
-            await cleanUpAndExit(0)
-          }
-        }
-      } catch (err) {
-        console.log(`Failed to fetch timings data`, err)
-        await cleanUpAndExit(1)
+        prevTimings = JSON.parse(await fs.readFile(timingsFile, 'utf8'))
+        console.log('Loaded test timings from disk successfully')
+      } catch (_) {
+        console.error(_)
       }
+
+      if (!prevTimings) {
+        prevTimings = await getTestTimings()
+        console.log('Fetched previous timings data successfully')
+
+        if (writeTimings) {
+          await fs.writeFile(timingsFile, JSON.stringify(prevTimings))
+          console.log('Wrote previous timings data to', timingsFile)
+          await cleanUpAndExit(0)
+        }
+      }
+    } catch (err) {
+      console.log(`Failed to fetch timings data`, err)
+      await cleanUpAndExit(1)
     }
   }
 
@@ -250,6 +256,7 @@ async function main() {
       const numPerGroup = Math.ceil(testNames.length / groupTotal)
       let offset = (groupPos - 1) * numPerGroup
       testNames = testNames.slice(offset, offset + numPerGroup)
+      console.log('Splitting without timings')
     }
   }
 

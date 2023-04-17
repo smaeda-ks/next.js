@@ -1,4 +1,4 @@
-name: build_initial
+name: build-initial
 
 on:
   push:
@@ -15,12 +15,48 @@ env:
   PNPM_VERSION: 7.24.3
   NODE_MAINTENANCE_VERSION: 16
   NODE_LTS_VERSION: 18
-  TEST_CONCURRENCY: 10
+  TEST_CONCURRENCY: 8
   # TODO: remove after testing
   NEXT_TEST_CONTINUE_ON_ERROR: 'true'
 
 jobs:
-  build_initial:
-    name: build_initial
+  build-initial:
+    name: build-initial
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
+    secrets: inherit
+
+  testDev:
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [1, 2, 3, 4, 5]
+    needs: ['build-initial']
+
+    uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
+    with:
+      afterBuild: NEXT_TEST_MODE=dev node run-tests.js --timings -g ${{ matrix.group }}/5 -c ${TEST_CONCURRENCY} --test-pattern '(development|e2e|unit)/.*\.test\.(js|jsx|ts|tsx)$'
+    secrets: inherit
+
+  testProd:
+    needs: ['build-initial', 'testDev']
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [1, 2, 3, 4, 5]
+
+    uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
+    with:
+      afterBuild: NEXT_TEST_MODE=dev node run-tests.js --timings -g ${{ matrix.group }}/5 -c ${TEST_CONCURRENCY} --test-pattern '(production|e2e)/.*\.test\.(js|jsx|ts|tsx)$'
+    secrets: inherit
+
+  testIntegration:
+    needs: ['build-initial', 'testProd']
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [1, 2, 3, 4, 5]
+
+    uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
+    with:
+      afterBuild: NEXT_TEST_MODE=dev node run-tests.js --timings -g ${{ matrix.group }}/5 -c ${TEST_CONCURRENCY} --test-pattern '(integration)/.*\.test\.(js|jsx|ts|tsx)$'
     secrets: inherit
