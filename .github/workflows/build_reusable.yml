@@ -30,11 +30,12 @@ env:
 
 jobs:
   build:
-    runs-on: self-hosted-arm64-linux
+    runs-on: [self-hosted, linux, arm64]
 
     steps:
+      - run: env
       - run: fnm install 18
-      - run: eval $(fnm env) && fnm use 18
+      - run: fnm use 18
 
       - run: node -v
 
@@ -58,7 +59,7 @@ jobs:
 
       - run: pnpm build
 
-      - run: turbo run build-native -- --release --target aarch64-unknown-linux-gnu
+      - run: turbo run build-native-release -- --target aarch64-unknown-linux-gnu
 
       - run: pnpm playwright install-deps
 

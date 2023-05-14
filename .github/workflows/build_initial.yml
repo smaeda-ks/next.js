@@ -15,7 +15,7 @@ env:
   PNPM_VERSION: 7.24.3
   NODE_MAINTENANCE_VERSION: 16
   NODE_LTS_VERSION: 18
-  TEST_CONCURRENCY: 8
+  TEST_CONCURRENCY: 6
   # TODO: remove after testing
   NEXT_TEST_CONTINUE_ON_ERROR: 'true'
 
@@ -29,7 +29,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: [1, 2, 3, 4, 5]
+        group: [1, 2, 3]
     needs: ['build-initial']
 
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: [1, 2, 3, 4, 5]
+        group: [1, 2, 3]
 
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
     with:
