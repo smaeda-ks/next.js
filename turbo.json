@@ -37,6 +37,9 @@
       "dependsOn": ["^dev"],
       "outputs": ["dist/**"]
     },
-    "typescript": {}
+    "typescript": {},
+    "get-test-timings": {
+      "outputs": ["test-timings.json"]
+    }
   }
 }

@@ -170,12 +170,12 @@ async function main() {
   if (outputTimings && groupArg) {
     console.log('Fetching previous timings data')
     try {
-      const timingsFile = path.join(__dirname, 'test-timings.json')
+      const timingsFile = path.join(process.cwd(), 'test-timings.json')
       try {
         prevTimings = JSON.parse(await fs.readFile(timingsFile, 'utf8'))
         console.log('Loaded test timings from disk successfully')
       } catch (_) {
-        console.error(_)
+        console.error('failed to load from disk', _)
       }
 
       if (!prevTimings) {
