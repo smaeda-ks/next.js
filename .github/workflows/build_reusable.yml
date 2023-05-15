@@ -30,7 +30,7 @@ env:
 
 jobs:
   build:
-    runs-on: [self-hosted, linux, arm64]
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - run: env
@@ -59,7 +59,7 @@ jobs:
 
       - run: pnpm build
 
-      - run: turbo run build-native-release -- --target aarch64-unknown-linux-gnu
+      - run: turbo run build-native-release -- --target x86_64-unknown-linux-gnu
 
       - run: pnpm playwright install-deps
 
