@@ -421,7 +421,7 @@ async function main() {
 
       // we only restrict 1 test per directory for
       // legacy integration tests
-      if (!testType && dirSema === undefined) {
+      if (test.startsWith('test/integration') && dirSema === undefined) {
         directorySemas.set(dirName, (dirSema = new Sema(1)))
       }
       if (dirSema) await dirSema.acquire()
