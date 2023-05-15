@@ -59,7 +59,7 @@ jobs:
 
       - run: pnpm build
 
-      - run: turbo run build-native-release -- --target x86_64-unknown-linux-gnu
+      - run: turbo run build-native-release --summarize true -- --target x86_64-unknown-linux-gnu
 
       - run: pnpm playwright install-deps
 
@@ -72,3 +72,9 @@ jobs:
       - run: rm -rf /tmp/next-repo-*; rm -rf /tmp/next-install-*
 
       - run: /bin/bash -c "${{ inputs.afterBuild }}"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: turbo run summary
+          path: .turbo/runs
