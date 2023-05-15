@@ -148,14 +148,20 @@ async function main() {
   let prevTimings
 
   if (tests.length === 0) {
+    let testPatternRegex
+
+    if (testPattern) {
+      testPatternRegex = new RegExp(testPattern)
+    }
+
     tests = (
       await glob('**/*.test.{js,ts,tsx}', {
         nodir: true,
         cwd: path.join(__dirname, 'test'),
       })
     ).filter((test) => {
-      if (testPattern) {
-        return new RegExp(testPattern).test(test)
+      if (testPatternRegex) {
+        return testPatternRegex.test(test)
       }
       if (filterTestsBy) {
         // only include the specified type

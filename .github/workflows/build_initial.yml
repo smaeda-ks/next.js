@@ -34,7 +34,7 @@ jobs:
 
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
     with:
-      afterBuild: NEXT_TEST_MODE=dev node run-tests.js --timings -g ${{ matrix.group }}/5 -c ${TEST_CONCURRENCY} --test-pattern '(development|e2e|unit)/.*\.test\.(js|jsx|ts|tsx)$'
+      afterBuild: NEXT_TEST_MODE=dev node run-tests.js --timings -g ${{ matrix.group }}/3 -c ${TEST_CONCURRENCY} --test-pattern '^(development|e2e|unit)/.*\.test\.(js|jsx|ts|tsx)$'
     secrets: inherit
 
   testProd:
@@ -46,7 +46,7 @@ jobs:
 
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
     with:
-      afterBuild: NEXT_TEST_MODE=dev node run-tests.js --timings -g ${{ matrix.group }}/5 -c ${TEST_CONCURRENCY} --test-pattern '(production|e2e)/.*\.test\.(js|jsx|ts|tsx)$'
+      afterBuild: NEXT_TEST_MODE=start node run-tests.js --timings -g ${{ matrix.group }}/3 -c ${TEST_CONCURRENCY} --test-pattern '^(production|e2e)/.*\.test\.(js|jsx|ts|tsx)$'
     secrets: inherit
 
   testIntegration:
@@ -58,5 +58,12 @@ jobs:
 
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
     with:
-      afterBuild: NEXT_TEST_MODE=dev node run-tests.js --timings -g ${{ matrix.group }}/5 -c ${TEST_CONCURRENCY} --test-pattern '(integration)/.*\.test\.(js|jsx|ts|tsx)$'
+      afterBuild: node run-tests.js --timings -g ${{ matrix.group }}/5 -c ${TEST_CONCURRENCY} --test-pattern '^(integration)/.*\.test\.(js|jsx|ts|tsx)$'
     secrets: inherit
+
+  testsPass:
+    runs-on: [self-hosted, linux, x64]
+    name: thank you, next
+    needs: ['build-initial', 'testIntegration']
+    steps:
+      - run: echo 'success'
