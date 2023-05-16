@@ -16,7 +16,7 @@ pub mod manifest;
 pub mod mode;
 mod next_build;
 pub mod next_client;
-mod next_client_chunks;
+pub mod next_client_chunks;
 mod next_client_component;
 pub mod next_config;
 mod next_edge;
@@ -39,6 +39,7 @@ mod util;
 mod web_entry_source;
 
 pub use app_source::create_app_source;
+pub use page_loader::create_page_loader_entry_asset;
 pub use page_source::create_page_source;
 pub use turbopack_binding::{turbopack::node::source_map, *};
 pub use web_entry_source::create_web_entry_source;

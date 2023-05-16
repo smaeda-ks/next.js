@@ -38,6 +38,7 @@ pub enum PathType {
 }
 
 /// Converts a filename within the server root into a next pathname.
+/// TODO(alexkirsz) This is broken atm with `index`.
 #[turbo_tasks::function]
 pub async fn pathname_for_path(
     server_root: FileSystemPathVc,
