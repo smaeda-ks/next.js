@@ -190,7 +190,7 @@ importers:
       tree-kill: 1.2.2
       ts-node: 10.9.1
       tsec: 0.2.1
-      turbo: 1.9.4
+      turbo: 1.9.6
       typescript: 4.8.2
       unfetch: 4.2.0
       wait-port: 0.2.2
@@ -209,7 +209,7 @@ importers:
       '@edge-runtime/jest-environment': 2.0.8
       '@fullhuman/postcss-purgecss': 1.3.0
       '@mdx-js/loader': 2.2.1_webpack@5.74.0
-      '@mdx-js/react': 2.2.1_u56pbgjbkowncv6nprcr2weanu
+      '@mdx-js/react': 2.2.1_react@18.2.0
       '@next/bundle-analyzer': link:packages/next-bundle-analyzer
       '@next/env': link:packages/next-env
       '@next/eslint-plugin-next': link:packages/eslint-plugin-next
@@ -224,7 +224,7 @@ importers:
       '@swc/cli': 0.1.55_@swc+core@1.3.55
       '@swc/core': 1.3.55_@swc+helpers@0.5.1
       '@swc/helpers': 0.5.1
-      '@testing-library/react': 13.0.0_gtqat2wn5bqm6ott5tfyc3i7ca
+      '@testing-library/react': 13.0.0_biqbaboplfbrettd7655fr4n2y
       '@types/cheerio': 0.22.16
       '@types/fs-extra': 8.1.0
       '@types/html-validator': 5.0.3
@@ -343,15 +343,15 @@ importers:
       react: 18.2.0
       react-17: /react/17.0.2
       react-builtin: /react/18.3.0-canary-16d053d59-20230506
-      react-dom: 18.2.0_u56pbgjbkowncv6nprcr2weanu
-      react-dom-17: /react-dom/17.0.2_u56pbgjbkowncv6nprcr2weanu
-      react-dom-builtin: /react-dom/18.3.0-canary-16d053d59-20230506_u56pbgjbkowncv6nprcr2weanu
-      react-dom-experimental-builtin: /react-dom/0.0.0-experimental-16d053d59-20230506_u56pbgjbkowncv6nprcr2weanu
+      react-dom: 18.2.0_react@18.2.0
+      react-dom-17: /react-dom/17.0.2_react@18.2.0
+      react-dom-builtin: /react-dom/18.3.0-canary-16d053d59-20230506_react@18.2.0
+      react-dom-experimental-builtin: /react-dom/0.0.0-experimental-16d053d59-20230506_react@18.2.0
       react-experimental-builtin: /react/0.0.0-experimental-16d053d59-20230506
-      react-server-dom-webpack: 18.3.0-canary-16d053d59-20230506_4ou4gwtf2it5ty4n7psuflt6oi
-      react-server-dom-webpack-experimental: /react-server-dom-webpack/0.0.0-experimental-16d053d59-20230506_4ou4gwtf2it5ty4n7psuflt6oi
-      react-ssr-prepass: 1.0.8_4gpilsz655g2a3m3xd3y7mh5su
-      react-virtualized: 9.22.3_gtqat2wn5bqm6ott5tfyc3i7ca
+      react-server-dom-webpack: 18.3.0-canary-16d053d59-20230506_4ifzx734of5j5ymg4ksx54vtqi
+      react-server-dom-webpack-experimental: /react-server-dom-webpack/0.0.0-experimental-16d053d59-20230506_4ifzx734of5j5ymg4ksx54vtqi
+      react-ssr-prepass: 1.0.8_qncsgtzehe3fgiqp6tr7lwq6fm
+      react-virtualized: 9.22.3_biqbaboplfbrettd7655fr4n2y
       relay-compiler: 13.0.2
       relay-runtime: 13.0.2
       release: 6.3.1
@@ -366,16 +366,16 @@ importers:
       semver: 7.3.7
       shell-quote: 1.7.3
       strip-ansi: 6.0.0
-      styled-components: 6.0.0-beta.5_gtqat2wn5bqm6ott5tfyc3i7ca
-      styled-jsx: 5.1.1_ea66t5yfzwahv7nsy5mdybomcm
+      styled-components: 6.0.0-beta.5_biqbaboplfbrettd7655fr4n2y
+      styled-jsx: 5.1.1_uuaxwgga6hqycsez5ok7v2wg4i
       styled-jsx-plugin-postcss: 3.0.2
-      swr: 2.0.0_u56pbgjbkowncv6nprcr2weanu
+      swr: 2.0.0_react@18.2.0
       tailwindcss: 3.2.7_pe6iykxod2v7i2uk6okjazxzki
       taskr: 1.1.0
       tree-kill: 1.2.2
       ts-node: 10.9.1_23p6ttc5yzdn6bu4b2mbrmvfre
       tsec: 0.2.1_sbe2uaqno6akssxfwbhgeg7v2q
-      turbo: 1.9.4
+      turbo: 1.9.6
       typescript: 4.8.2
       unfetch: 4.2.0
       wait-port: 0.2.2
@@ -6032,17 +6032,6 @@ packages:
       '@types/mdx': 2.0.3
       '@types/react': 18.2.5
       react: 18.2.0
-    dev: false
-
-  /@mdx-js/react/2.2.1_u56pbgjbkowncv6nprcr2weanu:
-    resolution: {integrity: sha512-YdXcMcEnqZhzql98RNrqYo9cEhTTesBiCclEtoiQUbJwx87q9453GTapYU6kJ8ZZ2ek1Vp25SiAXEFy5O/eAPw==}
-    peerDependencies:
-      react: '>=16'
-    dependencies:
-      '@types/mdx': 2.0.3
-      '@types/react': 18.2.5
-      react: 18.3.0-canary-16d053d59-20230506
-    dev: true
 
   /@mrmlnc/readdir-enhanced/2.2.1:
     resolution: {integrity: sha512-bPHp6Ji8b41szTOcaP63VlnbbO5Ny6dwAATtY6JTjh5N2OLrb5Qk/Th5cRkRQhkWCt+EJsYrNB0MiL+Gpn6e3g==}
@@ -6849,7 +6838,7 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@testing-library/react/13.0.0_gtqat2wn5bqm6ott5tfyc3i7ca:
+  /@testing-library/react/13.0.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-p0lYA1M7uoEmk2LnCbZLGmHJHyH59sAaZVXChTXlyhV/PRW9LoIh4mdf7tiXsO8BoNG+vN8UnFJff1hbZeXv+w==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -6859,8 +6848,8 @@ packages:
       '@babel/runtime': 7.16.7
       '@testing-library/dom': 8.20.0
       '@types/react-dom': 18.2.3
-      react: 18.3.0-canary-16d053d59-20230506
-      react-dom: 18.3.0-canary-16d053d59-20230506_u56pbgjbkowncv6nprcr2weanu
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: true
 
   /@tootallnate/once/1.1.2:
@@ -21135,13 +21124,13 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
-  /react-dom/0.0.0-experimental-16d053d59-20230506_u56pbgjbkowncv6nprcr2weanu:
+  /react-dom/0.0.0-experimental-16d053d59-20230506_react@18.2.0:
     resolution: {integrity: sha512-I4PIT9ZAdDgpbav9BxfzPv2p5otJz6BEbFEBvFwd1BnQJmtkKKApUU7RYdGKnwY2/r6hdfxPm2pne+NhiyBkzg==}
     peerDependencies:
       react: 0.0.0-experimental-16d053d59-20230506
     dependencies:
       loose-envify: 1.4.0
-      react: 18.3.0-canary-16d053d59-20230506
+      react: 18.2.0
       scheduler: 0.0.0-experimental-16d053d59-20230506
     dev: true
 
@@ -21156,14 +21145,14 @@ packages:
       scheduler: 0.20.2
     dev: false
 
-  /react-dom/17.0.2_u56pbgjbkowncv6nprcr2weanu:
+  /react-dom/17.0.2_react@18.2.0:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
     peerDependencies:
       react: 17.0.2
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-      react: 18.3.0-canary-16d053d59-20230506
+      react: 18.2.0
       scheduler: 0.20.2
     dev: true
 
@@ -21175,25 +21164,14 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
 
-  /react-dom/18.2.0_u56pbgjbkowncv6nprcr2weanu:
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
-    peerDependencies:
-      react: ^18.2.0
-    dependencies:
-      loose-envify: 1.4.0
-      react: 18.3.0-canary-16d053d59-20230506
-      scheduler: 0.23.0
-    dev: true
-
-  /react-dom/18.3.0-canary-16d053d59-20230506_u56pbgjbkowncv6nprcr2weanu:
+  /react-dom/18.3.0-canary-16d053d59-20230506_react@18.2.0:
     resolution: {integrity: sha512-5oSZ8QH2eeWRM5s9mMKu8N9PQiBaVPStBqkmLKQFv01iwedUBUQFmYTuGFaGwTnd0gQPewfQU3wqmnHKXatp6g==}
     peerDependencies:
       react: 18.3.0-canary-16d053d59-20230506
     dependencies:
       loose-envify: 1.4.0
-      react: 18.3.0-canary-16d053d59-20230506
+      react: 18.2.0
       scheduler: 0.24.0-canary-16d053d59-20230506
     dev: true
 
@@ -21215,7 +21193,7 @@ packages:
     resolution: {integrity: sha512-suLIhrU2IHKL5JEKR/fAwJv7bbeq4kJ+pJopf77jHwuR+HmJS/HbrPIGsTBUVfw7tXPOmYv7UJ7PCaN49e8x4A==}
     engines: {node: '>=0.10.0'}
 
-  /react-server-dom-webpack/0.0.0-experimental-16d053d59-20230506_4ou4gwtf2it5ty4n7psuflt6oi:
+  /react-server-dom-webpack/0.0.0-experimental-16d053d59-20230506_4ifzx734of5j5ymg4ksx54vtqi:
     resolution: {integrity: sha512-ZzsgPdm4MKyOxvMHpkjYWH2pRYp4dq+BxciRlpJatyzNDy0tXNl8Ar7xwwitxJa4NCIYCLWNslhEgwb0ewqr9A==}
     engines: {node: '>=0.10.0'}
     peerDependencies:
@@ -21225,13 +21203,13 @@ packages:
     dependencies:
       acorn-loose: 8.3.0
       loose-envify: 1.4.0
-      neo-async: 2.6.1
-      react: 18.3.0-canary-16d053d59-20230506
-      react-dom: 18.3.0-canary-16d053d59-20230506_u56pbgjbkowncv6nprcr2weanu
+      neo-async: 2.6.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
       webpack: 5.74.0_@swc+core@1.3.55
     dev: true
 
-  /react-server-dom-webpack/18.3.0-canary-16d053d59-20230506_4ou4gwtf2it5ty4n7psuflt6oi:
+  /react-server-dom-webpack/18.3.0-canary-16d053d59-20230506_4ifzx734of5j5ymg4ksx54vtqi:
     resolution: {integrity: sha512-lcZ81+6ThSa++ZjJrGGPJwNWuKghZxVM82OrjJDy0zkHMMKV55cta9OgHMfopo5XLw9+El47V4oOBkiL6jkRTQ==}
     engines: {node: '>=0.10.0'}
     peerDependencies:
@@ -21242,8 +21220,8 @@ packages:
       acorn-loose: 8.3.0
       loose-envify: 1.4.0
       neo-async: 2.6.1
-      react: 18.3.0-canary-16d053d59-20230506
-      react-dom: 18.3.0-canary-16d053d59-20230506_u56pbgjbkowncv6nprcr2weanu
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
       webpack: 5.74.0_@swc+core@1.3.55
     dev: true
 
@@ -21257,14 +21235,14 @@ packages:
       react-is: 18.2.0
     dev: true
 
-  /react-ssr-prepass/1.0.8_4gpilsz655g2a3m3xd3y7mh5su:
+  /react-ssr-prepass/1.0.8_qncsgtzehe3fgiqp6tr7lwq6fm:
     resolution: {integrity: sha512-O0gfRA1SaK+9ITKxqfnXsej2jF+OHGP/+GxD4unROQaM/0/UczGF9fuF+wTboxaQoKdIf4FvS3h/OigWh704VA==}
     peerDependencies:
       react: ^16.8.0
       react-is: ^16.8.0
     dependencies:
       object-is: 1.0.2
-      react: 18.3.0-canary-16d053d59-20230506
+      react: 18.2.0
       react-is: 16.13.1
     dev: true
 
@@ -21279,7 +21257,7 @@ packages:
       scheduler: 0.23.0
     dev: true
 
-  /react-virtualized/9.22.3_gtqat2wn5bqm6ott5tfyc3i7ca:
+  /react-virtualized/9.22.3_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-MKovKMxWTcwPSxE1kK1HcheQTWfuCxAuBoSTf2gwyMM21NdX/PXUhnoP8Uc5dRKd+nKm8v41R36OellhdCpkrw==}
     peerDependencies:
       react: ^15.3.0 || ^16.0.0-alpha
@@ -21290,8 +21268,8 @@ packages:
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 18.3.0-canary-16d053d59-20230506
-      react-dom: 18.3.0-canary-16d053d59-20230506_u56pbgjbkowncv6nprcr2weanu
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
       react-lifecycles-compat: 3.0.4
     dev: true
 
@@ -23280,7 +23258,7 @@ packages:
     dependencies:
       inline-style-parser: 0.1.1
 
-  /styled-components/6.0.0-beta.5_gtqat2wn5bqm6ott5tfyc3i7ca:
+  /styled-components/6.0.0-beta.5_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-ns1VlFPcvyiC1bGolCqyIRszaHfs8l/fwChG4RM/U7TzkJCJIKjYFtdYVYW0M4sofay43F5B5w8TSuH5ycFg8w==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -23303,8 +23281,8 @@ packages:
       '@babel/traverse': 7.18.0
       '@emotion/unitless': 0.7.5
       css-to-react-native: 3.0.0
-      react: 18.3.0-canary-16d053d59-20230506
-      react-dom: 18.3.0-canary-16d053d59-20230506_u56pbgjbkowncv6nprcr2weanu
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
       shallowequal: 1.1.0
       stylis: 4.1.3
     transitivePeerDependencies:
@@ -23316,24 +23294,6 @@ packages:
     dependencies:
       postcss: 7.0.32
       postcss-load-plugins: 2.3.0
-    dev: true
-
-  /styled-jsx/5.1.1_ea66t5yfzwahv7nsy5mdybomcm:
-    resolution: {integrity: sha512-pW7uC1l4mBZ8ugbiZrcIsiIvVx1UmTfw7UkC3Um2tmfUq9Bhk8IiyEIPl6F8agHgjzku6j0xQEZbfA5uSgSaCw==}
-    engines: {node: '>= 12.0.0'}
-    peerDependencies:
-      '@babel/core': '*'
-      babel-plugin-macros: '*'
-      react: '>= 16.8.0 || 17.x.x || ^18.0.0-0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      babel-plugin-macros:
-        optional: true
-    dependencies:
-      '@babel/core': 7.18.0
-      client-only: 0.0.1
-      react: 18.3.0-canary-16d053d59-20230506
     dev: true
 
   /styled-jsx/5.1.1_uuaxwgga6hqycsez5ok7v2wg4i:
@@ -23352,7 +23312,6 @@ packages:
       '@babel/core': 7.18.0
       client-only: 0.0.1
       react: 18.2.0
-    dev: false
 
   /stylehacks/4.0.3:
     resolution: {integrity: sha512-7GlLk9JwlElY4Y6a/rmbH2MhVlTyVmiJd1PfTCqFaIBEGMYNsrO/v3SeGTdhBThLg4Z+NbOk/qFMwCa+J+3p/g==}
@@ -23485,14 +23444,14 @@ packages:
       stable: 0.1.8
     dev: true
 
-  /swr/2.0.0_u56pbgjbkowncv6nprcr2weanu:
+  /swr/2.0.0_react@18.2.0:
     resolution: {integrity: sha512-IhUx5yPkX+Fut3h0SqZycnaNLXLXsb2ECFq0Y29cxnK7d8r7auY2JWNbCW3IX+EqXUg3rwNJFlhrw5Ye/b6k7w==}
     engines: {pnpm: '7'}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      react: 18.3.0-canary-16d053d59-20230506
-      use-sync-external-store: 1.2.0_u56pbgjbkowncv6nprcr2weanu
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: true
 
   /symbol-observable/1.0.1:
@@ -24121,66 +24080,66 @@ packages:
       safe-buffer: 5.2.1
     dev: true
 
-  /turbo-darwin-64/1.9.4:
-    resolution: {integrity: sha512-kCmDmxyUWWI+BstTZQKNM87UbNx40C0ZHUTFqs9tmeH7d5+gA2QhqrSoBuwQYw7YYNLpbkqu1ObbppsUlIFPdQ==}
+  /turbo-darwin-64/1.9.6:
+    resolution: {integrity: sha512-9jmxyCAcPrJiPD/EmtK2tObrPGblmyORCgNgtcw1iozcfC7kqungWTfbnHrvTNUfUmVhH0sA3BGzshpuslbQHg==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
-  /turbo-darwin-arm64/1.9.4:
-    resolution: {integrity: sha512-Of64jMEaDDHx0dzU7RwdOuh1lP021vtQun9wmEHhT0Hk/TQF+kDCywoHcY7R5nlSRcssFjysVyhCeZW6CkWrrA==}
+  /turbo-darwin-arm64/1.9.6:
+    resolution: {integrity: sha512-5f8ajEi8mOdAZ0AXavu/TzkHGEUi7tw+paefff7KK+XTUrdeyTlf8ULiTI+r97uH1jsYeTeL4JPu9IsEx+bL6g==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
-  /turbo-linux-64/1.9.4:
-    resolution: {integrity: sha512-kajvUnXlUNtgVzLW3Y/RoHrC64G+G0Ky/o1F+oP6QK/T85H8NwNHXq2F6hyIrZPNGbKpPgpetuQ1waIibxJ0rA==}
+  /turbo-linux-64/1.9.6:
+    resolution: {integrity: sha512-UrCDMl2Nqd/kxNEJonqvDg8nmZU4UggVQTmqcdYyuOiCA3H98jxggQqZh1VGeF23XDbCWHSQjnbkLeoUvQJWKw==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
-  /turbo-linux-arm64/1.9.4:
-    resolution: {integrity: sha512-11P9Y8MoimqUzib3SU3md4g1loLF0FRHpYCbPzUTWPT3beOcdM2nop2u/yFHyBnbSxz1rTWczRJPnNoAki0B/Q==}
+  /turbo-linux-arm64/1.9.6:
+    resolution: {integrity: sha512-oOxAT6lNiMpYVZPWzFNsUvC2LQgKYyH4aBnkeoBnjuAUk8BK5AhUWSWl4QlfTcBWW4LnjDPeZQKrbnxvHhPVsw==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
-  /turbo-windows-64/1.9.4:
-    resolution: {integrity: sha512-2tFcFhuqs1c1DGFAk2wjU0TXrOXKoPdma9vxrTVdwvtz5Nc8XPF8RNW+1jbmRjpumGUkXou6Pe973GSvPjvD5w==}
+  /turbo-windows-64/1.9.6:
+    resolution: {integrity: sha512-65UxLL1vb5RItzJYNerO5c+yPMzSnD+GvJxfBZIvAwSnb+4ulhPRHzQOYinVq4PZ2DosBZOorWPRf97POmhvog==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
-  /turbo-windows-arm64/1.9.4:
-    resolution: {integrity: sha512-wJfEwUyWXxn6VKD2Vbycke6cm99gJ0llkr9gUnbR06eaRu1TiLY24FcFqN95/wftp0n5nne7b6K7Wz1TLh1fJQ==}
+  /turbo-windows-arm64/1.9.6:
+    resolution: {integrity: sha512-aF9VzYT+vaKNbZGDccN7AYrNhph4gr6yOFN7GtTr777IwS5FGW7evku7RScsua5r2HwVKvBO2WjyadpbXuoOOQ==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
-  /turbo/1.9.4:
-    resolution: {integrity: sha512-PqhlMCmu6sOqcVswt1tYL0TV/O0uQ8kUZWfmlEl0EHPusc2R3nzg7KVXrZbXTHXzQH5HE2oJm9iUI0mYz31i7Q==}
+  /turbo/1.9.6:
+    resolution: {integrity: sha512-mLbCIAYNbSm60kVhBiAr+YA1BYpPObS/y7rqw1hjh36ZdJDp35lUSeqdBs6oGt0Y4hnmN4ZeIXu8zMVRR03/vw==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      turbo-darwin-64: 1.9.4
-      turbo-darwin-arm64: 1.9.4
-      turbo-linux-64: 1.9.4
-      turbo-linux-arm64: 1.9.4
-      turbo-windows-64: 1.9.4
-      turbo-windows-arm64: 1.9.4
-    dev: true
+      turbo-darwin-64: 1.9.6
+      turbo-darwin-arm64: 1.9.6
+      turbo-linux-64: 1.9.6
+      turbo-linux-arm64: 1.9.6
+      turbo-windows-64: 1.9.6
+      turbo-windows-arm64: 1.9.6
+    dev: false
 
   /tweetnacl/0.14.5:
     resolution: {integrity: sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA==}
@@ -24731,12 +24690,12 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
-  /use-sync-external-store/1.2.0_u56pbgjbkowncv6nprcr2weanu:
+  /use-sync-external-store/1.2.0_react@18.2.0:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      react: 18.3.0-canary-16d053d59-20230506
+      react: 18.2.0
     dev: true
 
   /use/3.1.1:

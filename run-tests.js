@@ -369,7 +369,7 @@ async function main() {
         }
       )
       const handleOutput = (type) => (chunk) => {
-        if (hideOutput && !isFinalRun) {
+        if (hideOutput) {
           outputChunks.push({ type, chunk })
         } else {
           process.stderr.write(chunk)
@@ -394,13 +394,12 @@ async function main() {
               }
             })
           }
-          return reject(
-            new Error(
-              code
-                ? `failed with code: ${code}`
-                : `failed with signal: ${signal}`
-            )
+          const err = new Error(
+            code ? `failed with code: ${code}` : `failed with signal: ${signal}`
           )
+          err.output = outputChunks.map((chunk) => chunk.toString()).join('')
+
+          return reject(err)
         }
         await fs
           .remove(
@@ -461,7 +460,13 @@ async function main() {
           )
           break
         } catch (err) {
-          if (i < numRetries) {
+          // jest-hast-map can cause a false failure do to
+          // the .next/package.json generated
+          const isJestHasteError =
+            err.output?.includes('Error: Cannot parse') &&
+            err.output?.includes('jest-haste-map')
+
+          if (i < numRetries || isJestHasteError) {
             try {
               let testDir = path.dirname(path.join(__dirname, test))
 
@@ -482,9 +487,9 @@ async function main() {
 
       if (!passed) {
         console.error(`${test} failed to pass within ${numRetries} retries`)
-        children.forEach((child) => child.kill())
 
         if (!shouldContinueTestsOnError) {
+          children.forEach((child) => child.kill())
           cleanUpAndExit(1)
         } else {
           console.log(

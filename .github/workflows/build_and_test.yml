@@ -1,28 +1,30 @@
-name: build-initial
+name: build-and-lint
 
 on:
   push:
     branches: ['ijjk/update-ci-workflow']
 
 concurrency:
-  group: ${{ github.ref }}-build-initial
+  group: ${{ github.ref }}-build-and-lint
   cancel-in-progress: true
 
 env:
   NAPI_CLI_VERSION: 2.14.7
-  TURBO_VERSION: 1.9.4
+  TURBO_VERSION: 1.9.6
   RUST_TOOLCHAIN: nightly-2023-03-09
   PNPM_VERSION: 7.24.3
   NODE_MAINTENANCE_VERSION: 16
   NODE_LTS_VERSION: 18
-  TEST_CONCURRENCY: 6
+  TEST_CONCURRENCY: 10
   # TODO: remove after testing
-  NEXT_TEST_CONTINUE_ON_ERROR: 'true'
+  # NEXT_TEST_CONTINUE_ON_ERROR: 'true'
 
 jobs:
-  build-initial:
-    name: build-initial
+  build-and-lint:
+    name: Build and Lint
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
+    with:
+      afterBuild: pnpm lint && apt install moreutils jq -y && ./scripts/check-examples.sh && ./scripts/check-pre-compiled.sh
     secrets: inherit
 
   testDev:
@@ -30,7 +32,7 @@ jobs:
       fail-fast: false
       matrix:
         group: [1, 2, 3]
-    needs: ['build-initial']
+    needs: ['build-and-lint']
 
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
     with:
@@ -38,7 +40,7 @@ jobs:
     secrets: inherit
 
   testProd:
-    needs: ['build-initial', 'testDev']
+    needs: ['build-and-lint', 'testDev']
     strategy:
       fail-fast: false
       matrix:
@@ -50,7 +52,7 @@ jobs:
     secrets: inherit
 
   testIntegration:
-    needs: ['build-initial', 'testProd']
+    needs: ['build-and-lint', 'testProd']
     strategy:
       fail-fast: false
       matrix:
@@ -64,6 +66,6 @@ jobs:
   testsPass:
     runs-on: [self-hosted, linux, x64]
     name: thank you, next
-    needs: ['build-initial', 'testIntegration']
+    needs: ['build-and-lint', 'testIntegration']
     steps:
       - run: echo 'success'
