@@ -40,6 +40,8 @@
     "typescript": {},
     "get-test-timings": {
       "outputs": ["test-timings.json"]
-    }
+    },
+    "rust-check": {},
+    "test-cargo-unit": {}
   }
 }

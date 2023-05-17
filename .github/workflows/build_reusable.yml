@@ -69,7 +69,7 @@ jobs:
 
       - run: git clean -xdf test; git checkout test;
 
-      - run: rm -rf /tmp/next-repo-*; rm -rf /tmp/next-install-*
+      - run: rm -rf /tmp/next-repo-*; rm -rf /tmp/next-install-* /tmp/yarn-* /tmp/ncc-cache
 
       - run: /bin/bash -c "${{ inputs.afterBuild }}"
 
