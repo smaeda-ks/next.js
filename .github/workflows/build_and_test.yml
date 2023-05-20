@@ -1,11 +1,11 @@
-name: build-and-lint
+name: build-and-test
 
 on:
   push:
     branches: ['ijjk/update-ci-workflow']
 
 concurrency:
-  group: ${{ github.ref }}-build-and-lint
+  group: ${{ github.ref }}-build-and-test
   cancel-in-progress: true
 
 env:
@@ -15,7 +15,7 @@ env:
   PNPM_VERSION: 7.24.3
   NODE_MAINTENANCE_VERSION: 16
   NODE_LTS_VERSION: 18
-  TEST_CONCURRENCY: 10
+  TEST_CONCURRENCY: 4
   # TODO: remove after testing
   # NEXT_TEST_CONTINUE_ON_ERROR: 'true'
 
@@ -34,17 +34,35 @@ jobs:
     name: build and lint
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
     with:
-      afterBuild: pnpm lint && apt install moreutils jq -y && ./scripts/check-examples.sh && ./scripts/check-pre-compiled.sh
+      afterBuild: pnpm lint && apt install moreutils jq -y && ./scripts/check-examples.sh && turbo run check-precompiled
     secrets: inherit
 
-  test-next-swc:
-    name: test next-swc
+  rust-check:
+    name: rust check
     needs: ['build-and-lint']
 
     uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
     with:
       skipForDocsOnly: 'yes'
-      afterBuild: turbo run rust-check && turbo run test-cargo-unit &&  RUST_BACKTRACE=0 NEXT_EXTERNAL_TESTS_FILTERS="$(pwd)/packages/next-swc/crates/next-dev-tests/tests-manifest.json" __INTERNAL_NEXT_DEV_TEST_TURBO_DEV=TRUE __INTERNAL_CUSTOM_TURBOPACK_BINDINGS="$(pwd)/packages/next-swc/native/next-swc.linux-x64-gnu.node" __INTERNAL_NEXT_DEV_TEST_TURBO_GLOB_MATCH="*" NEXT_E2E_TEST_TIMEOUT=240000 NEXT_TEST_MODE=dev node run-tests.js --type development --timings -c 1
+      afterBuild: turbo run rust-check
+    secrets: inherit
+
+  test-cargo-unit:
+    name: test cargo unit
+    needs: ['build-and-lint']
+    uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
+    with:
+      skipForDocsOnly: 'yes'
+      afterBuild: turbo run test-cargo-unit
+    secrets: inherit
+
+  test-next-swc-integration:
+    name: test next-swc integration
+    needs: ['build-and-lint']
+    uses: vercel/next.js/.github/workflows/build_reusable.yml@ijjk/update-ci-workflow
+    with:
+      skipForDocsOnly: 'yes'
+      afterBuild: RUST_BACKTRACE=0 NEXT_EXTERNAL_TESTS_FILTERS="$(pwd)/packages/next-swc/crates/next-dev-tests/tests-manifest.json" __INTERNAL_NEXT_DEV_TEST_TURBO_DEV=TRUE __INTERNAL_CUSTOM_TURBOPACK_BINDINGS="$(pwd)/packages/next-swc/native/next-swc.linux-x64-gnu.node" __INTERNAL_NEXT_DEV_TEST_TURBO_GLOB_MATCH="*" NEXT_E2E_TEST_TIMEOUT=240000 NEXT_TEST_MODE=dev node run-tests.js --type development --timings -c 1
     secrets: inherit
 
   test-dev:
@@ -96,7 +114,9 @@ jobs:
         'test-dev',
         'test-prod',
         'test-integration',
-        'test-next-swc',
+        'rust-check',
+        'test-cargo-unit',
+        'test-next-swc-integration',
       ]
     runs-on: [self-hosted, linux, x64]
     name: thank you, next

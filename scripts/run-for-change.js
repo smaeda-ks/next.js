@@ -66,6 +66,8 @@ async function main() {
   const isCanary =
     branchName.trim() === 'canary' && remoteUrl.includes('vercel/next.js')
 
+  // TODO: change this to avoid fetching canary and instead check
+  // diff against last n-commits
   try {
     await exec('git fetch origin canary')
   } catch (err) {

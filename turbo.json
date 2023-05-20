@@ -42,6 +42,12 @@
       "outputs": ["test-timings.json"]
     },
     "rust-check": {},
-    "test-cargo-unit": {}
+    "test-cargo-unit": {},
+    "lint-eslint": {},
+    "prettier-check": {},
+    "check-precompiled": {
+      "dependsOn": ["^build"],
+      "outputs": ["src/compiled"]
+    }
   }
 }
