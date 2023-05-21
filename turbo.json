@@ -38,16 +38,24 @@
       "outputs": ["dist/**"]
     },
     "typescript": {},
-    "get-test-timings": {
+    "//@get-test-timings": {
+      "inputs": ["run-tests.js"],
       "outputs": ["test-timings.json"]
     },
     "rust-check": {},
     "test-cargo-unit": {},
-    "lint-eslint": {},
-    "prettier-check": {},
-    "check-precompiled": {
-      "dependsOn": ["^build"],
-      "outputs": ["src/compiled"]
+    "//#lint-eslint": {},
+    "//#lint-language": {},
+    "//#prettier-check": {},
+    "//#get-test-timings": {
+      "inputs": ["run-tests.js"],
+      "outputs": ["test-timings.json"]
+    },
+    "//#check-examples": {
+      "inputs": ["examples/**/*", "./scripts/check-examples.sh"]
+    },
+    "//#check-precompiled": {
+      "outputs": ["packages/next/src/compiled"]
     }
   }
 }

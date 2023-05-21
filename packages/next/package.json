@@ -73,10 +73,7 @@
     "prepublishOnly": "cd ../../ && turbo run build",
     "types": "tsc --declaration --emitDeclarationOnly --stripInternal --declarationDir dist",
     "typescript": "tsec --noEmit",
-    "ncc-compiled": "ncc cache clean && taskr ncc",
-    "prettier-check": "cd ../../ && prettier --check .",
-    "lint-eslint": "cd ../../ && eslint . --ext js,jsx,ts,tsx --max-warnings=0 --config .eslintrc.json --no-eslintrc",
-    "check-precompiled": "cd ../../ && ./scripts/check-pre-compiled.sh"
+    "ncc-compiled": "ncc cache clean && taskr ncc"
   },
   "taskr": {
     "requires": [
