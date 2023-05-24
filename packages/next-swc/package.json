@@ -13,7 +13,8 @@
     "cache-build-native": "echo $(ls native)",
     "rust-check": "cd ../../; cargo fmt -- --check && cargo clippy --all -- -D warnings -A deprecated && cargo check -p next-dev --no-default-features --features cli,custom_allocator,rustls-tls,__internal_nextjs_integration_test && rm -rf target",
     "test-cargo-unit": "cargo test --workspace --exclude next-dev-tests",
-    "bump": "echo 8"
+    "test-cargo-integration": "cargo nextest run -p next-dev-tests --release --no-run && cargo nextest run -p next-dev-tests --release --no-fail-fast",
+    "bump": "echo 10"
   },
   "napi": {
     "name": "next-swc",
